@@ -7,7 +7,7 @@ df[["date", "country", "category"]] = df["key"].str.split('", "', expand=True)
 df = df.drop(columns=["key"])
 df["date"] = pd.to_datetime(df["date"].str.lstrip('["'), format="%Y-%m-%dT%H")
 df["category"] = df["category"].str.rstrip('"]')
-df["max_category_profit"] = df.groupby("category")["profit"].transform("max") 
+df["max_category_profit"] = df.groupby("category")["profit"].transform("sum") 
 
 vs = df[df["max_category_profit"] == df["max_category_profit"].max()]
 
